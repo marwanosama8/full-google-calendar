@@ -1,61 +1,56 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "marwanosama8/full-google-calendar",
+    "description": "This is my package full-google-calendar",
     "keywords": [
-        ":vendor_name",
+        "marwanosama8",
         "laravel",
-        ":package_slug"
+        "full-google-calendar"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/marwanosama8/full-google-calendar",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/marwanosama8/full-google-calendar/issues",
+        "source": "https://github.com/marwanosama8/full-google-calendar"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "marwanosama8",
+            "email": "marwan.osam8888@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
-        "spatie/laravel-package-tools": "^1.15.0"
+        "spatie/laravel-package-tools": "^1.15.0",
+        "google/apiclient": "^2.17.0",
+        "google/apiclient-services": "^0.376.0",
+        "saade/filament-fullcalendar": "^3.0",
+        "stevebauman/hypertext": "^1.1"
     },
     "require-dev": {
-        "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.9",
-        "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^8.0",
         "pestphp/pest": "^2.1",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
         "spatie/laravel-ray": "^1.26"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Marwanosama8\\FullGoogleCalendar\\": "src/",
+            "Marwanosama8\\FullGoogleCalendar\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Marwanosama8\\FullGoogleCalendar\\Tests\\": "tests/"
         }
     },
     "scripts": {
         "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
-        "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
         "sort-packages": true,
@@ -67,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Marwanosama8\\FullGoogleCalendar\\FullGoogleCalendarServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FullGoogleCalendar": "Marwanosama8\\FullGoogleCalendar\\Facades\\FullGoogleCalendar"
             }
         }
     },

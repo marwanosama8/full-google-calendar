@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('event_invitations', function (Blueprint $table) {
+            $table->id();
+            $table->foreignUuId('user_id')->constrained('users')
+                   ->onUpdate('cascade')
+                   ->onDelete('cascade');
+            $table->foreignUuId('event_id')->constrained('events')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->string('status')->default('pending');
+            $table->text('note')->nullable();
+            $table->timestamps();
+
+        });
+    }
+};

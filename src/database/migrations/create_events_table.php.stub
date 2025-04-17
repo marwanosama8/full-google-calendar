@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('events', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->text('subject');
+            $table->longText('body')->nullable();
+            $table->string('category');
+            $table->foreignUuid('organizer');
+            $table->string('text_color')->nullable();
+            $table->json('participants')->nullable();
+            $table->json('attachments')->nullable();
+            $table->boolean('isAllDay')->default(false);
+
+            $table->dateTime('start');
+            $table->dateTime('end');
+
+
+            $table->foreignUuid('event_leader')->nullable();
+            $table->text('meeting_url')->nullable();
+            $table->text('event_origin')->nullable();
+            $table->datetime('sync_updated_at')->nullable();
+            $table->string('google_event_id')->nullable();
+            $table->timestamps();
+        });
+    }
+};
