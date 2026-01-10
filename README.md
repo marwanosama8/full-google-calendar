@@ -1,86 +1,114 @@
-# :package_description
+# Filament Google Calendar Sync
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
+A Laravel package that syncs **Google Calendar events** into your **Filament admin panel**, allowing you to view and manage calendar events directly inside Filament.
 
-<!--delete-->
+This package is designed to be reusable and easy to integrate, providing seamless synchronization between Google Calendar and your Laravel application using the Google Calendar API.
+
 ---
-This repo can be used to scaffold a Filament plugin. Follow these steps to get started:
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Make something great!
+## Features
+
+- 🔐 Google OAuth authentication
+- 🔄 Sync Google Calendar events into your database
+- 📅 Display events inside Filament (Resources / Widgets)
+- ⏱ Supports scheduled syncing via Laravel Scheduler
+- 🧩 Clean, extensible package architecture
+
 ---
-<!--/delete-->
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
 ## Installation
 
-You can install the package via composer:
+Install the package via Composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
+composer require vendor/filament-google-calendar
+php artisan vendor:publish --tag="filament-google-calendar-migrations"
 php artisan migrate
+php artisan vendor:publish --tag="filament-google-calendar-config"
+php artisan vendor:publish --tag="filament-google-calendar-views"
 ```
 
-You can publish the config file with:
+# Configuration
+
+After publishing, you will find the config file at:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-config"
+config/filament-google-calendar.php
 ```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
-
-This is the contents of the published config file:
+Example configuration:
 
 ```php
 return [
+
+    'client_id' => env('GOOGLE_CALENDAR_CLIENT_ID'),
+
+    'client_secret' => env('GOOGLE_CALENDAR_CLIENT_SECRET'),
+
+    'redirect_uri' => env('GOOGLE_CALENDAR_REDIRECT_URI'),
+
+    'calendar_id' => 'primary',
+
+    'sync' => [
+        'enabled' => true,
+        'interval' => 'hourly',
+    ],
+
 ];
 ```
+Make sure to add the required environment variables to your .env file.
 
-## Usage
+# Usage
+Sync Google Calendar Events
 
-```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+You can manually trigger a sync using:
+
+```bash
+php artisan google-calendar:sync
 ```
 
-## Testing
+```php
+$schedule->command('google-calendar:sync')->hourly();
+```
+Filament Integration
+
+Once synced, events will be available inside Filament via:
+
+Filament Resource (Events)
+
+Dashboard widgets (optional)
+
+Calendar views (if enabled)
+
+# Testing
+
+Run the test suite using:
 
 ```bash
 composer test
 ```
 
-## Changelog
+Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Please see CHANGELOG
+ for details about recent changes.
 
-## Contributing
+Contributing
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Contributions are welcome!
+Please review CONTRIBUTING
+ for details.
 
-## Security Vulnerabilities
+# Security
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+If you discover any security-related issues, please review our security policy for instructions on responsible disclosure.
 
-## Credits
+# Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+marwanosama8
 
-## License
+All Contributors
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+# License
+
+The MIT License (MIT).
+See the LICENSE
